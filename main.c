@@ -71,6 +71,8 @@ double binomial_price_model(double price, double strike, double rate, double tim
 		}
 	}
 	
+	double calculated = optionTree[0][0];
+
 	//print_tree(stockTree, steps);
 	//printf("\n");
 	//print_tree(optionTree, steps);
@@ -87,7 +89,7 @@ double binomial_price_model(double price, double strike, double rate, double tim
 	}
 	free(optionTree);
 	
-	return optionTree[0][0];
+	return calculated;
 }
 
 int main() {
@@ -99,7 +101,9 @@ int main() {
     int n = 2;            // Number of time steps
     double volatility = 0.2; // Annual volatility value
 
-    printf("%.2lf\n", binomial_price_model(S0, K, r, T, volatility, n));
+	double optionPrice = binomial_price_model(S0, K, r, T, volatility, n);
+
+    printf("Option Price: %.2lf\n", optionPrice);
 
     return 0;
 }
